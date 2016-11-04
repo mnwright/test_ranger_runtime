@@ -28,7 +28,7 @@ options(xtable.include.rownames = FALSE)
 \clearpage
 \section{Classification}
 \subsection{Digit data}
-<<class_digit, echo = FALSE, results = "asis", cache = TRUE, warning = FALSE>>=
+<<class_digit, echo = FALSE, results = "asis", cache = FALSE, warning = FALSE>>=
 ## Scenarios
 scenarios <- list(c(n = 100, p = 5), 
                   c(n = 100, p = 50), 
@@ -49,7 +49,7 @@ print_table(merged_tab, diff = 0.1, caption = "Runtimes in seconds for classific
 @
 
 \subsection{Binary data}
-<<class_binary, echo = FALSE, results = "asis", cache = TRUE, warning = FALSE>>=
+<<class_binary, echo = FALSE, results = "asis", cache = FALSE, warning = FALSE>>=
 ## Scenarios
 scenarios <- list(c(n = 100, p = 5), 
                   c(n = 100, p = 50), 
@@ -70,7 +70,7 @@ print_table(merged_tab, diff = 0.1, caption = "Runtimes in seconds for classific
 @
 
 \subsection{Continuous data}
-<<class_cont, echo = FALSE, results = "asis", cache = TRUE, warning = FALSE>>=
+<<class_cont, echo = FALSE, results = "asis", cache = FALSE, warning = FALSE>>=
 ## Scenarios
 scenarios <- list(c(n = 100, p = 5), 
                   c(n = 100, p = 50), 
@@ -92,7 +92,7 @@ print_table(merged_tab, diff = 0.1, caption = "Runtimes in seconds for classific
 \clearpage
 \section{Probability estimation}
 \subsection{Digit data}
-<<prob_digit, echo = FALSE, results = "asis", cache = TRUE, warning = FALSE>>=
+<<prob_digit, echo = FALSE, results = "asis", cache = FALSE, warning = FALSE>>=
 ## Scenarios
 scenarios <- list(c(n = 100, p = 5),
                  c(n = 100, p = 50),
@@ -114,7 +114,7 @@ print_table(merged_tab, diff = 0.1, caption = "Runtimes in seconds for probabili
 @
 
 \subsection{Binary data}
-<<prob_binary, echo = FALSE, results = "asis", cache = TRUE, warning = FALSE>>=
+<<prob_binary, echo = FALSE, results = "asis", cache = FALSE, warning = FALSE>>=
 ## Scenarios
 scenarios <- list(c(n = 100, p = 5), 
                   c(n = 100, p = 50), 
@@ -135,7 +135,7 @@ print_table(merged_tab, diff = 0.1, caption = "Runtimes in seconds for probabili
 @
 
 \subsection{Continuous data}
-<<prob_cont, echo = FALSE, results = "asis", cache = TRUE, warning = FALSE>>=
+<<prob_cont, echo = FALSE, results = "asis", cache = FALSE, warning = FALSE>>=
 ## Scenarios
 scenarios <- list(c(n = 100, p = 5), 
                   c(n = 100, p = 50), 
@@ -157,7 +157,7 @@ print_table(merged_tab, diff = 0.1, caption = "Runtimes in seconds for probabili
 \clearpage
 \section{Regression}
 \subsection{Digit data}
-<<reg_digit, echo = FALSE, results = "asis", cache = TRUE, warning = FALSE>>=
+<<reg_digit, echo = FALSE, results = "asis", cache = FALSE, warning = FALSE>>=
 ## Scenarios
 scenarios <- list(c(n = 100, p = 5), 
                   c(n = 100, p = 50), 
@@ -179,7 +179,7 @@ print_table(merged_tab, diff = 0.1, caption = "Runtimes in seconds for regressio
 @
 
 \subsection{Binary data}
-<<reg_binary, echo = FALSE, results = "asis", cache = TRUE, warning = FALSE>>=
+<<reg_binary, echo = FALSE, results = "asis", cache = FALSE, warning = FALSE>>=
 ## Scenarios
 scenarios <- list(c(n = 100, p = 5), 
                   c(n = 100, p = 50), 
@@ -200,7 +200,7 @@ print_table(merged_tab, diff = 0.1, caption = "Runtimes in seconds for regressio
 @
 
 \subsection{Continuous data}
-<<reg_cont, echo = FALSE, results = "asis", cache = TRUE, warning = FALSE>>=
+<<reg_cont, echo = FALSE, results = "asis", cache = FALSE, warning = FALSE>>=
 ## Scenarios
 scenarios <- list(c(n = 100, p = 5), 
                   c(n = 100, p = 50), 
@@ -222,7 +222,7 @@ print_table(merged_tab, diff = 0.1, caption = "Runtimes in seconds for regressio
 \clearpage
 \section{Survival}
 \subsection{Digit data}
-<<surv_digit, echo = FALSE, results = "asis", cache = TRUE, warning = FALSE>>=
+<<surv_digit, echo = FALSE, results = "asis", cache = FALSE, warning = FALSE>>=
 ## Scenarios
 scenarios <- list(c(n = 100, p = 5), 
                   c(n = 100, p = 50), 
@@ -242,7 +242,7 @@ print_table(merged_tab, diff = 0.1, caption = "Runtimes in seconds for survival 
 @
 
 \subsection{Binary data}
-<<surv_binary, echo = FALSE, results = "asis", cache = TRUE, warning = FALSE>>=
+<<surv_binary, echo = FALSE, results = "asis", cache = FALSE, warning = FALSE>>=
 ## Scenarios
 scenarios <- list(c(n = 100, p = 5), 
                   c(n = 100, p = 50), 
@@ -262,7 +262,7 @@ print_table(merged_tab, diff = 0.1, caption = "Runtimes in seconds for survival 
 @
 
 \subsection{Continuous data}
-<<surv_cont, echo = FALSE, results = "asis", cache = TRUE, warning = FALSE>>=
+<<surv_cont, echo = FALSE, results = "asis", cache = FALSE, warning = FALSE>>=
 ## Scenarios
 scenarios <- list(c(n = 100, p = 5), 
                   c(n = 100, p = 50), 
