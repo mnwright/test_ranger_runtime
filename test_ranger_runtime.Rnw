@@ -1,0 +1,89 @@
+\documentclass[a4paper]{article}
+
+\usepackage{booktabs}
+
+\author{Marvin N. Wright}
+\title{ranger runtime checks}
+\date{\today}
+\begin{document}
+
+\maketitle
+
+<<init, echo = FALSE, message = FALSE>>=
+library(data.table)
+library(ranger)
+library(randomForest)
+library(microbenchmark)
+library(xtable)
+source("data_simulations.R")
+source("functions.R")
+
+options(xtable.caption.placement = "top")
+options(xtable.booktabs = TRUE)
+options(xtable.include.rownames = FALSE)
+@
+
+\section{Classification}
+\subsection{Digit data}
+<<class_digit, echo = FALSE, results = "asis", cache = TRUE, warning = FALSE>>=
+## Scenarios
+scenarios <- list(c(n = 100, p = 5), 
+                  c(n = 100, p = 50), 
+                  c(n = 100, p = 500), 
+                  c(n = 1000, p = 5), 
+                  c(n = 1000, p = 50))
+
+## Create data
+dats <- lapply(scenarios, function(x) {
+  digit_data(n = x["n"], p = x["p"], num_levels = 6, type = "class")
+})
+
+## Measure runtime
+tab <- measure_runtime(dats, scenarios, respect.unordered.factors = "order")
+merged_tab <- save_load(tab, "class_digit")
+print_table(merged_tab, diff = 0.1, caption = "Runtimes in seconds for classification and digit data.")
+@
+
+\section{Probability estimation}
+\subsection{Digit data}
+<<prob_digit, echo = FALSE, results = "asis", cache = TRUE, warning = FALSE>>=
+## Scenarios
+scenarios <- list(c(n = 100, p = 5),
+                 c(n = 100, p = 50),
+                 c(n = 100, p = 500),
+                 c(n = 1000, p = 5),
+                 c(n = 1000, p = 50))
+
+## Create data
+dats <- lapply(scenarios, function(x) {
+ digit_data(n = x["n"], p = x["p"], num_levels = 6, type = "class")
+})
+
+## Measure runtime
+tab <- measure_runtime(dats, scenarios, respect.unordered.factors = "order", probability = TRUE)
+merged_tab <- save_load(tab, "prob_digit")
+print_table(merged_tab, diff = 0.1, caption = "Runtimes in seconds for probability estimation and digit data.")
+@
+
+\section{Regression}
+\subsection{Digit data}
+<<reg_digit, echo = FALSE, results = "asis", cache = TRUE, warning = FALSE>>=
+## Scenarios
+scenarios <- list(c(n = 100, p = 5), 
+                  c(n = 100, p = 50), 
+                  c(n = 100, p = 500), 
+                  c(n = 1000, p = 5), 
+                  c(n = 1000, p = 50))
+
+## Create data
+dats <- lapply(scenarios, function(x) {
+  digit_data(n = x["n"], p = x["p"], num_levels = 6, type = "reg")
+})
+
+## Measure runtime
+tab <- measure_runtime(dats, scenarios, respect.unordered.factors = "order")
+merged_tab <- save_load(tab, "reg_digit")
+print_table(merged_tab, diff = 0.1, caption = "Runtimes in seconds for regression and digit data.")
+@
+
+\end{document}
