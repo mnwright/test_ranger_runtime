@@ -34,7 +34,8 @@ scenarios <- list(c(n = 100, p = 5),
                   c(n = 100, p = 50), 
                   c(n = 100, p = 500), 
                   c(n = 1000, p = 5), 
-                  c(n = 1000, p = 50))
+                  c(n = 1000, p = 50), 
+                  c(n = 1000, p = 500))
 
 ## Create data
 dats <- lapply(scenarios, function(x) {
@@ -54,7 +55,8 @@ scenarios <- list(c(n = 100, p = 5),
                   c(n = 100, p = 50), 
                   c(n = 100, p = 500), 
                   c(n = 1000, p = 5), 
-                  c(n = 1000, p = 50))
+                  c(n = 1000, p = 50), 
+                  c(n = 1000, p = 500))
 
 ## Create data
 dats <- lapply(scenarios, function(x) {
@@ -96,7 +98,8 @@ scenarios <- list(c(n = 100, p = 5),
                  c(n = 100, p = 50),
                  c(n = 100, p = 500),
                  c(n = 1000, p = 5),
-                 c(n = 1000, p = 50))
+                 c(n = 1000, p = 50), 
+                 c(n = 1000, p = 500))
 
 ## Create data
 dats <- lapply(scenarios, function(x) {
@@ -117,7 +120,8 @@ scenarios <- list(c(n = 100, p = 5),
                   c(n = 100, p = 50), 
                   c(n = 100, p = 500), 
                   c(n = 1000, p = 5), 
-                  c(n = 1000, p = 50))
+                  c(n = 1000, p = 50), 
+                  c(n = 1000, p = 500))
 
 ## Create data
 dats <- lapply(scenarios, function(x) {
@@ -159,7 +163,8 @@ scenarios <- list(c(n = 100, p = 5),
                   c(n = 100, p = 50), 
                   c(n = 100, p = 500), 
                   c(n = 1000, p = 5), 
-                  c(n = 1000, p = 50))
+                  c(n = 1000, p = 50), 
+                  c(n = 1000, p = 250))
 
 ## Create data
 dats <- lapply(scenarios, function(x) {
@@ -180,7 +185,8 @@ scenarios <- list(c(n = 100, p = 5),
                   c(n = 100, p = 50), 
                   c(n = 100, p = 500), 
                   c(n = 1000, p = 5), 
-                  c(n = 1000, p = 50))
+                  c(n = 1000, p = 50), 
+                  c(n = 1000, p = 500))
 
 ## Create data
 dats <- lapply(scenarios, function(x) {
@@ -260,7 +266,7 @@ print_table(merged_tab, diff = 0.1, caption = "Runtimes in seconds for survival 
 ## Scenarios
 scenarios <- list(c(n = 100, p = 5), 
                   c(n = 100, p = 50), 
-                  c(n = 100, p = 500))
+                  c(n = 100, p = 250))
 
 ## Create data
 dats <- lapply(scenarios, function(x) {
