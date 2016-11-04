@@ -1,6 +1,7 @@
 \documentclass[a4paper]{article}
 
 \usepackage{booktabs}
+\usepackage[a4paper, top = 4cm, bottom = 2cm]{geometry}
 
 \author{Marvin N. Wright}
 \title{ranger runtime checks}
@@ -8,6 +9,7 @@
 \begin{document}
 
 \maketitle
+\tableofcontents
 
 <<init, echo = FALSE, message = FALSE>>=
 library(data.table)
@@ -23,6 +25,7 @@ options(xtable.booktabs = TRUE)
 options(xtable.include.rownames = FALSE)
 @
 
+\clearpage
 \section{Classification}
 \subsection{Digit data}
 <<class_digit, echo = FALSE, results = "asis", cache = TRUE, warning = FALSE>>=
@@ -39,11 +42,52 @@ dats <- lapply(scenarios, function(x) {
 })
 
 ## Measure runtime
-tab <- measure_runtime(dats, scenarios, respect.unordered.factors = "order")
+tab <- measure_runtime(dats, scenarios, dependent.variable.name = "y", respect.unordered.factors = "order")
 merged_tab <- save_load(tab, "class_digit")
 print_table(merged_tab, diff = 0.1, caption = "Runtimes in seconds for classification and digit data.")
 @
 
+\subsection{Binary data}
+<<class_binary, echo = FALSE, results = "asis", cache = TRUE, warning = FALSE>>=
+## Scenarios
+scenarios <- list(c(n = 100, p = 5), 
+                  c(n = 100, p = 50), 
+                  c(n = 100, p = 500), 
+                  c(n = 1000, p = 5), 
+                  c(n = 1000, p = 50))
+
+## Create data
+dats <- lapply(scenarios, function(x) {
+  binary_data(n = x["n"], p = x["p"], type = "class")
+})
+
+## Measure runtime
+tab <- measure_runtime(dats, scenarios, dependent.variable.name = "y")
+merged_tab <- save_load(tab, "class_binary")
+print_table(merged_tab, diff = 0.1, caption = "Runtimes in seconds for classification and binary data.")
+@
+
+\subsection{Continuous data}
+<<class_cont, echo = FALSE, results = "asis", cache = TRUE, warning = FALSE>>=
+## Scenarios
+scenarios <- list(c(n = 100, p = 5), 
+                  c(n = 100, p = 50), 
+                  c(n = 100, p = 500), 
+                  c(n = 1000, p = 5), 
+                  c(n = 1000, p = 50))
+
+## Create data
+dats <- lapply(scenarios, function(x) {
+  cont_data(n = x["n"], p = x["p"], type = "class")
+})
+
+## Measure runtime
+tab <- measure_runtime(dats, scenarios, dependent.variable.name = "y")
+merged_tab <- save_load(tab, "class_cont")
+print_table(merged_tab, diff = 0.1, caption = "Runtimes in seconds for classification and continuous data.")
+@
+
+\clearpage
 \section{Probability estimation}
 \subsection{Digit data}
 <<prob_digit, echo = FALSE, results = "asis", cache = TRUE, warning = FALSE>>=
@@ -60,11 +104,53 @@ dats <- lapply(scenarios, function(x) {
 })
 
 ## Measure runtime
-tab <- measure_runtime(dats, scenarios, respect.unordered.factors = "order", probability = TRUE)
+tab <- measure_runtime(dats, scenarios, dependent.variable.name = "y", 
+                       respect.unordered.factors = "order", probability = TRUE)
 merged_tab <- save_load(tab, "prob_digit")
 print_table(merged_tab, diff = 0.1, caption = "Runtimes in seconds for probability estimation and digit data.")
 @
 
+\subsection{Binary data}
+<<prob_binary, echo = FALSE, results = "asis", cache = TRUE, warning = FALSE>>=
+## Scenarios
+scenarios <- list(c(n = 100, p = 5), 
+                  c(n = 100, p = 50), 
+                  c(n = 100, p = 500), 
+                  c(n = 1000, p = 5), 
+                  c(n = 1000, p = 50))
+
+## Create data
+dats <- lapply(scenarios, function(x) {
+  binary_data(n = x["n"], p = x["p"], type = "class")
+})
+
+## Measure runtime
+tab <- measure_runtime(dats, scenarios, dependent.variable.name = "y")
+merged_tab <- save_load(tab, "prob_binary")
+print_table(merged_tab, diff = 0.1, caption = "Runtimes in seconds for probability estimation and binary data.")
+@
+
+\subsection{Continuous data}
+<<prob_cont, echo = FALSE, results = "asis", cache = TRUE, warning = FALSE>>=
+## Scenarios
+scenarios <- list(c(n = 100, p = 5), 
+                  c(n = 100, p = 50), 
+                  c(n = 100, p = 500), 
+                  c(n = 1000, p = 5), 
+                  c(n = 1000, p = 50))
+
+## Create data
+dats <- lapply(scenarios, function(x) {
+  cont_data(n = x["n"], p = x["p"], type = "class")
+})
+
+## Measure runtime
+tab <- measure_runtime(dats, scenarios, dependent.variable.name = "y")
+merged_tab <- save_load(tab, "prob_cont")
+print_table(merged_tab, diff = 0.1, caption = "Runtimes in seconds for probability estimation and continuous data.")
+@
+
+\clearpage
 \section{Regression}
 \subsection{Digit data}
 <<reg_digit, echo = FALSE, results = "asis", cache = TRUE, warning = FALSE>>=
@@ -81,9 +167,115 @@ dats <- lapply(scenarios, function(x) {
 })
 
 ## Measure runtime
-tab <- measure_runtime(dats, scenarios, respect.unordered.factors = "order")
+tab <- measure_runtime(dats, scenarios, dependent.variable.name = "y", 
+                       respect.unordered.factors = "order")
 merged_tab <- save_load(tab, "reg_digit")
 print_table(merged_tab, diff = 0.1, caption = "Runtimes in seconds for regression and digit data.")
+@
+
+\subsection{Binary data}
+<<reg_binary, echo = FALSE, results = "asis", cache = TRUE, warning = FALSE>>=
+## Scenarios
+scenarios <- list(c(n = 100, p = 5), 
+                  c(n = 100, p = 50), 
+                  c(n = 100, p = 500), 
+                  c(n = 1000, p = 5), 
+                  c(n = 1000, p = 50))
+
+## Create data
+dats <- lapply(scenarios, function(x) {
+  binary_data(n = x["n"], p = x["p"], type = "reg")
+})
+
+## Measure runtime
+tab <- measure_runtime(dats, scenarios, dependent.variable.name = "y")
+merged_tab <- save_load(tab, "reg_binary")
+print_table(merged_tab, diff = 0.1, caption = "Runtimes in seconds for regression and binary data.")
+@
+
+\subsection{Continuous data}
+<<reg_cont, echo = FALSE, results = "asis", cache = TRUE, warning = FALSE>>=
+## Scenarios
+scenarios <- list(c(n = 100, p = 5), 
+                  c(n = 100, p = 50), 
+                  c(n = 100, p = 500), 
+                  c(n = 1000, p = 5), 
+                  c(n = 1000, p = 50))
+
+## Create data
+dats <- lapply(scenarios, function(x) {
+  cont_data(n = x["n"], p = x["p"], type = "reg")
+})
+
+## Measure runtime
+tab <- measure_runtime(dats, scenarios, dependent.variable.name = "y")
+merged_tab <- save_load(tab, "reg_cont")
+print_table(merged_tab, diff = 0.1, caption = "Runtimes in seconds for regression and continuous data.")
+@
+
+\clearpage
+\section{Survival}
+\subsection{Digit data}
+<<surv_digit, echo = FALSE, results = "asis", cache = TRUE, warning = FALSE>>=
+## Scenarios
+scenarios <- list(c(n = 100, p = 5), 
+                  c(n = 100, p = 50), 
+                  c(n = 100, p = 500), 
+                  c(n = 1000, p = 5), 
+                  c(n = 1000, p = 50))
+
+## Create data
+dats <- lapply(scenarios, function(x) {
+  digit_data(n = x["n"], p = x["p"], num_levels = 6, type = "surv")
+})
+
+## Measure runtime
+tab <- measure_runtime(dats, scenarios, respect.unordered.factors = "order",
+                       dependent.variable.name = "time", status.variable.name = "status")
+merged_tab <- save_load(tab, "surv_digit")
+print_table(merged_tab, diff = 0.1, caption = "Runtimes in seconds for survival and digit data.")
+@
+
+\subsection{Binary data}
+<<surv_binary, echo = FALSE, results = "asis", cache = TRUE, warning = FALSE>>=
+## Scenarios
+scenarios <- list(c(n = 100, p = 5), 
+                  c(n = 100, p = 50), 
+                  c(n = 100, p = 500), 
+                  c(n = 1000, p = 5), 
+                  c(n = 1000, p = 50))
+
+## Create data
+dats <- lapply(scenarios, function(x) {
+  binary_data(n = x["n"], p = x["p"], type = "surv")
+})
+
+## Measure runtime
+tab <- measure_runtime(dats, scenarios, 
+                       dependent.variable.name = "time", status.variable.name = "status")
+merged_tab <- save_load(tab, "surv_binary")
+print_table(merged_tab, diff = 0.1, caption = "Runtimes in seconds for survival and binary data.")
+@
+
+\subsection{Continuous data}
+<<surv_cont, echo = FALSE, results = "asis", cache = TRUE, warning = FALSE>>=
+## Scenarios
+scenarios <- list(c(n = 100, p = 5), 
+                  c(n = 100, p = 50), 
+                  c(n = 100, p = 500), 
+                  c(n = 1000, p = 5), 
+                  c(n = 1000, p = 50))
+
+## Create data
+dats <- lapply(scenarios, function(x) {
+  cont_data(n = x["n"], p = x["p"], type = "surv")
+})
+
+## Measure runtime
+tab <- measure_runtime(dats, scenarios, 
+                       dependent.variable.name = "time", status.variable.name = "status")
+merged_tab <- save_load(tab, "surv_cont")
+print_table(merged_tab, diff = 0.1, caption = "Runtimes in seconds for survival and continuous data.")
 @
 
 \end{document}

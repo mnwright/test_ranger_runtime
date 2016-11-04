@@ -13,6 +13,7 @@
 *.lb
 *.bcf
 *.run.xml
+*.toc
 auto/*
 cache/*
 test_ranger_runtime.tex

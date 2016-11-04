@@ -3,7 +3,7 @@
 measure_runtime <- function(dats, scenarios, ...) {
   ## Runtime
   runtimes <- lapply(dats, function(dat) {
-    microbenchmark(ranger = ranger(dependent.variable.name = "y", data = dat, 
+    microbenchmark(ranger = ranger(data = dat, 
                                    num.threads = 1, ...), 
                    times = 3, unit = "s")
   })
