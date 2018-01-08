@@ -1,7 +1,7 @@
 \documentclass[a4paper]{article}
 
 \usepackage{booktabs}
-\usepackage[a4paper, top = 4cm, bottom = 2cm]{geometry}
+\usepackage[a3paper, top = 4cm, bottom = 2cm, left = 2cm, right = 2cm]{geometry}
 
 \author{Marvin N. Wright}
 \title{ranger runtime checks}
@@ -43,7 +43,7 @@ dats <- lapply(scenarios, function(x) {
 })
 
 ## Measure runtime
-tab <- measure_runtime(dats, scenarios, dependent.variable.name = "y", respect.unordered.factors = "order")
+tab <- measure_runtime(dats, scenarios, dependent.variable.name = "y", respect.unordered.factors = FALSE)
 merged_tab <- save_load(tab, "class_digit")
 print_table(merged_tab, diff = 0.1, caption = "Runtimes in seconds for classification and digit data.")
 @
@@ -108,7 +108,7 @@ dats <- lapply(scenarios, function(x) {
 
 ## Measure runtime
 tab <- measure_runtime(dats, scenarios, dependent.variable.name = "y", 
-                       respect.unordered.factors = "order", probability = TRUE)
+                       respect.unordered.factors = FALSE, probability = TRUE)
 merged_tab <- save_load(tab, "prob_digit")
 print_table(merged_tab, diff = 0.1, caption = "Runtimes in seconds for probability estimation and digit data.")
 @
@@ -173,7 +173,7 @@ dats <- lapply(scenarios, function(x) {
 
 ## Measure runtime
 tab <- measure_runtime(dats, scenarios, dependent.variable.name = "y", 
-                       respect.unordered.factors = "order")
+                       respect.unordered.factors = FALSE)
 merged_tab <- save_load(tab, "reg_digit")
 print_table(merged_tab, diff = 0.1, caption = "Runtimes in seconds for regression and digit data.")
 @
@@ -235,7 +235,7 @@ dats <- lapply(scenarios, function(x) {
 })
 
 ## Measure runtime
-tab <- measure_runtime(dats, scenarios, respect.unordered.factors = "order",
+tab <- measure_runtime(dats, scenarios, respect.unordered.factors = FALSE,
                        dependent.variable.name = "time", status.variable.name = "status")
 merged_tab <- save_load(tab, "surv_digit")
 print_table(merged_tab, diff = 0.1, caption = "Runtimes in seconds for survival and digit data.")
