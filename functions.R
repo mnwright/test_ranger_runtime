@@ -34,7 +34,9 @@ load_old_runtimes <- function(pattern) {
     x[, grep("ranger_.", colnames(x)), with = FALSE]
   }))
   old_cols <- old_cols[, colnames(old_cols) != grep("ranger_.", colnames(tab), value = TRUE), with = FALSE]
-  old_cols
+  
+  # Order by minor version
+  old_cols[, order(as.numeric(gsub(".+\\.(\\d+)\\..+", "\\1", colnames(old_cols)))), with = FALSE]
 }
 
 ## Save new runtimes and load old runtimes
