@@ -60,7 +60,7 @@ print_table <- function(tab, diff, caption) {
   tab <- as.data.frame(tab)
   print_tab <- tab
   print_tab[, ncol(tab)] <- round(print_tab[, ncol(tab)], 2)
-  colnames(print_tab) <- gsub("_", "\\\\_", colnames(print_tab))
+  colnames(print_tab) <- gsub("ranger_", "", colnames(print_tab))
   
   if (length(grep("ranger_.", colnames(tab))) >= 2) {
     ## Find rows with relative difference > diff
