@@ -1,3 +1,4 @@
+SHELL=/usr/bin/bash
 MASTER = test_ranger_runtime
 
 all: $(MASTER).pdf
