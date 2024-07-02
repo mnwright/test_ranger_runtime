@@ -129,7 +129,7 @@ dats <- lapply(scenarios, function(x) {
 })
 
 ## Measure runtime
-tab <- measure_runtime(dats, scenarios, dependent.variable.name = "y")
+tab <- measure_runtime(dats, scenarios, dependent.variable.name = "y", probability = TRUE)
 merged_tab <- save_load(tab, "prob_binary")
 print_table(merged_tab, diff = 0.1, caption = "Runtimes in seconds for probability estimation and binary data.")
 @
@@ -149,7 +149,7 @@ dats <- lapply(scenarios, function(x) {
 })
 
 ## Measure runtime
-tab <- measure_runtime(dats, scenarios, dependent.variable.name = "y")
+tab <- measure_runtime(dats, scenarios, dependent.variable.name = "y", probability = TRUE)
 merged_tab <- save_load(tab, "prob_cont")
 print_table(merged_tab, diff = 0.1, caption = "Runtimes in seconds for probability estimation and continuous data.")
 @
